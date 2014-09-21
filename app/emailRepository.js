@@ -37,8 +37,8 @@ module.exports = {
 
         //check if name is already taken
         else {
-          NobotEmail.findOne({ name : nobot.name }, function(err, nobot){
-            if (!err && !nobot)
+          NobotEmail.findOne({ name : nobot.name }, function(err, existingNobot){
+            if (!err && !existingNobot)
             saveNobot(nobot, callback, errcallback);
 
             else
