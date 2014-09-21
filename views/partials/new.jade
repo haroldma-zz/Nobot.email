@@ -17,7 +17,7 @@ form(name="nobotForm", ng-submit="submit(nobotForm.$valid)", novalidate)
       type="text", name="name", ng-model="name",
       ng-pattern="/^[a-zA-Z0-9-_]+$/", ng-minlength="3", ng-maxlength="50",
     placeholder="johnsmith (optional)")
-  button.btn.btn-hg.btn-primary.btn-block(ng-disabled="nobotForm.$invalid")
+  button.btn.btn-hg.btn-primary.btn-block(ng-disabled="nobotForm.$invalid || blockUi")
     | nobot my email!
 
 br

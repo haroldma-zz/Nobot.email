@@ -6,7 +6,9 @@ var app = angular.module('nobotApp', [
   'nobotApp.controllers',
   'ngRoute',
   'ngResource',
-  'vcRecaptcha'
+  'vcRecaptcha',
+  'angulartics',
+  'angulartics.google.analytics'
 ])
 
 app.config(function ($routeProvider, $locationProvider) {

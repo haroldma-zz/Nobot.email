@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('nobotApp.controllers', []).
-  controller('NewCtrl', function ($scope, $resource) {
+  controller('NewCtrl', function ($scope, $resource, $analytics) {
     $scope.submit = function (isValid) {
       if (!isValid) return;
 
@@ -24,6 +24,8 @@ angular.module('nobotApp.controllers', []).
         //display success
         $scope.success = data;
         $("#success").fadeIn();
+
+        $analytics.eventTrack('Created Nobot Email');
       },
       function (err){
         NProgress.done();
@@ -32,7 +34,7 @@ angular.module('nobotApp.controllers', []).
       });
     };
   }).
-  controller('EmailCtrl', function ($scope, $routeParams, $resource, vcRecaptchaService) {
+  controller('EmailCtrl', function ($scope, $routeParams, $resource, vcRecaptchaService, $analytics) {
     $scope.model = {
                 key: '6Lfhn_oSAAAAANZLfZphEe1MLoJs-1BXLB5eIoYm'
             };
@@ -45,7 +47,10 @@ angular.module('nobotApp.controllers', []).
       $("#error").fadeOut('fast');
 
       NProgress.start();
+      $scope.blockUi = true;
+
       $resource("/api/captcha/").save(data, function(data) {
+        $scope.blockUi = false;
         NProgress.done();
 
           $scope.nobot = data;
@@ -55,6 +60,8 @@ angular.module('nobotApp.controllers', []).
 
             //show nobot details
             $('#nobot-view').fadeIn();
+
+            $analytics.eventTrack('Passed Captcha', {  label: data.email });
           });
       },
       function(err){
