@@ -1,5 +1,5 @@
 var mongoose   = require('mongoose');
-mongoose.connect(process.env.MONGODB_CONN); // connect to the database
+mongoose.connect(process.env.CUSTOMCONNSTR_MONGODB_CONN); // connect to the database
 
 var Hashids = require("hashids"),
     hashids = new Hashids(process.env.SALT_HASHIDS),
