@@ -1,0 +1,13 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "hashids": "1.0.1",
+    "jade": "*",
+    "mongoose": "^3.8.16",
+    "recaptcha": "^1.2.0"
+  }
+}

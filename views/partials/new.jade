@@ -1,0 +1,36 @@
+form(name="nobotForm", ng-submit="submit(nobotForm.$valid)", novalidate)
+  div.input-group.input-group-hg
+    span.input-group-addon @
+    input.form-control.flat(type="email", name="email",
+      required, ng-model="email", placeholder="email")
+
+  div.input-group.input-group-hg
+    //-name input in here
+    span.input-group-addon http://nbot.io/n/
+    p.help-text(ng-show="nobotForm.name.$error.pattern")
+      | only alphanumeric characters (no spaces)
+    p.help-text(ng-show="nobotForm.name.$error.minlength")
+      | name for nobot is too short
+    p.help-text(ng-show="nobotForm.name.$error.maxlength")
+      | name for nobot is too long
+    input.form-control.flat(
+      type="text", name="name", ng-model="name",
+      ng-pattern="/^[a-zA-Z0-9-_]+$/", ng-minlength="3", ng-maxlength="50",
+    placeholder="johnsmith (optional)")
+  button.btn.btn-hg.btn-primary.btn-block(ng-disabled="nobotForm.$invalid")
+    | nobot my email!
+
+br
+//- there must be a way with angular to do this better?
+//- success message
+div.alert.alert-success(id="success", role="alert", style="display:none")
+  p
+    strong awesome!
+    |  you can share your nobot email using any of these links:
+    p: a(href="{{success.short_link}}")  {{success.short_link}}
+    p: a(href="{{success.link}}")  {{success.link}}
+//- error message
+div.alert.alert-danger(id="error", role="alert", style="display:none")
+  p
+    strong opps!
+    |  {{error}}

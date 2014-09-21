@@ -1,0 +1,27 @@
+form(id="captcha-form")
+  div(vc-recaptcha, tabindex="3", theme="clean", key="model.key")
+  button.btn.btn-primary.flat.btn-block.btn-hg(ng-click="submit()") Verify
+
+div(id="nobot-view", style="display:none")
+  h4
+    a(href="mailto:{{nobot.email}}") {{nobot.email}}
+  div.row
+    div.col-md-8
+      h6 Viewed:
+      p
+        ng-pluralize(count="nobot.views",
+          when="{'0': 'no views','1': '1 view','other': '{{nobot.views}} views'}")
+    div.col-md-4
+      h6 Created:
+      time(datetime="{{nobot.createdAt}}") {{nobot.createdAt | fromNow}}
+  div(id="name-container", ng-show="nobot.name").row
+    div.col-md-4.col-md-push-8
+      h6 Name:
+      p {{nobot.name}}
+
+br
+//- error message
+div.alert.alert-danger(id="error", role="alert", style="display:none")
+  p
+    strong opps!
+    |  {{error}}
