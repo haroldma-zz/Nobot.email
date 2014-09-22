@@ -28,7 +28,7 @@ module.exports = {
         var id = hashids.encode(existingNobot._id);
         var path =  existingNobot.name || id;
         var url = 'http://nobot.email/' + (existingNobot.name ? 'n/' : 'h/') + path;
-        var short_url = 'http://nbot.io/' + (existingNobot.name ? 'n/' : '') + path;
+        var short_url = 'http://nbot.io/' + (existingNobot.name ? 'n/' : 'h/') + path;
         callback({ link: url, short_link: short_url });
       }
       else {
@@ -70,7 +70,7 @@ function saveNobot(nobot, callback, errcallback){
       // .io is a shorten url
       // .me is another one that will be use in the future for user
       var url = 'http://nobot.email/' + (nobot.name ? 'n/' : 'h/') + path;
-      var short_url = 'http://nbot.io/' + (nobot.name ? 'n/' : '') + path;
+      var short_url = 'http://nbot.io/' + (nobot.name ? 'n/' : 'h/') + path;
       callback({ link: url, short_link: short_url });
     });
   });
