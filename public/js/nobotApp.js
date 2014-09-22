@@ -8,7 +8,8 @@ var app = angular.module('nobotApp', [
   'ngResource',
   'vcRecaptcha',
   'angulartics',
-  'angulartics.google.analytics'
+  'angulartics.google.analytics',
+  'blockUI'
 ])
 
 app.config(function ($routeProvider, $locationProvider) {

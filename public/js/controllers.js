@@ -47,10 +47,8 @@ angular.module('nobotApp.controllers', []).
       $("#error").fadeOut('fast');
 
       NProgress.start();
-      $scope.blockUi = true;
 
       $resource("/api/captcha/").save(data, function(data) {
-        $scope.blockUi = false;
         NProgress.done();
 
           $scope.nobot = data;
